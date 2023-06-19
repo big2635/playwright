@@ -24,7 +24,7 @@ test.afterAll(async () => {
 test('Contact us', async({}) => {
     
     await page.goto("https://automationteststore.com");
-   // await page.pause();
+    await page.pause();
 
     //Contact us link
     await page.locator('.info_links_footer > li:nth-of-type(5)').click();
@@ -36,8 +36,12 @@ test('Contact us', async({}) => {
     await page.locator('#ContactUsFrm_enquiry').type("hello QA Test");
     // Button submit
     await page.locator('[title="Submit"]').click();
-
+    
     // Expects the text to contain.
-   // await page.expect('.mb40 > p:nth-of-type(2)').toContainText("Your enquiry has been successfully sent to the store owner!");
+    await expect(page.locator("//section[@class='mb40']/p[.='Your enquiry has been successfully sent to the store owner!']")).toHaveText("Your enquiry has been successfully sent to the store owner!")  
 
+    await page.pause();
+
+    // //visual validation with SS
+    // await expect(page).toHaveScreenshot()
 });

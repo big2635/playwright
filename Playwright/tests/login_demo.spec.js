@@ -53,6 +53,11 @@ test.only('Demo Login Test2',async ({page}) => {
   //button
   await page.locator('.login-button').click();
 
+  //assertion
+  await expect(page.locator('.content-header h1')).toHaveText("Dashboard")
+  await expect(page).toHaveURL('https://admin-demo.nopcommerce.com/admin/');
+  await expect(page).toHaveTitle('Dashboard / nopCommerce administration')
+
   await page.locator('#nopSideBarPusher i').click();
   await page.locator('text=Logout').click();
   await page.waitForURL('https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F');
